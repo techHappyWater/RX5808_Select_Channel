@@ -1,0 +1,82 @@
+C51 COMPILER V9.54   KEY                                                                   06/02/2020 14:38:58 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\Objects\key.obj
+COMPILER INVOKED BY: D:\Keil_MDK\C51\BIN\C51.EXE key.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\key.
+                    -lst) TABS(2) OBJECT(.\Objects\key.obj)
+
+line level    source
+
+   1          #include "all.h"
+   2          
+   3          void KEY_Scan()        //扫描按键
+   4          {
+   5   1        static bit key_mode=0;              //0：扫描按键     1：自动搜频
+   6   1        static u8 count=0;          //按键按下时间计数
+   7   1        static bit Key_Add_old=1;   //记录上次按键状态
+   8   1        static bit Key_Sub_old=1;   //记录上次按键状态
+   9   1        
+  10   1        if((Key_Add==0)||(Key_Sub==0))
+  11   1        {
+  12   2          count++;
+  13   2          if(count==200)
+  14   2          {
+  15   3            count=0;
+  16   3            key_mode=1;
+  17   3          }
+  18   2        }
+  19   1        else count=0;
+  20   1        
+  21   1        if(key_mode==0)
+  22   1        {
+  23   2          LED_K=1;
+  24   2          
+  25   2          if((Key_Add==1)&&(Key_Add_old==0))
+  26   2          {
+  27   3            if(channel<47)channel+=1;
+  28   3            else channel=0;
+  29   3            RX5808_Set_Freq(Freq_Buff[channel]);
+  30   3            EEPROM_Eares(0);
+  31   3            EEPROM_Write(0,channel);
+  32   3          }
+  33   2          
+  34   2          if((Key_Sub==1)&&(Key_Sub_old==0))
+  35   2          {
+  36   3            if(channel>0)channel-=1;
+  37   3            else channel=47;
+  38   3            RX5808_Set_Freq(Freq_Buff[channel]);
+  39   3            EEPROM_Eares(0);
+  40   3            EEPROM_Write(0,channel);
+  41   3          }
+  42   2        }
+  43   1        
+  44   1        if(key_mode==1)
+  45   1        {
+  46   2          LED_K=0;
+  47   2          if((Key_Add==1)&&(Key_Sub==1))
+  48   2          {
+  49   3            Channel_Scan();
+  50   3            key_mode=0;
+  51   3          }
+  52   2        }
+  53   1        
+  54   1        Key_Add_old=Key_Add;
+C51 COMPILER V9.54   KEY                                                                   06/02/2020 14:38:58 PAGE 2   
+
+  55   1        Key_Sub_old=Key_Sub;
+  56   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    167    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      3    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

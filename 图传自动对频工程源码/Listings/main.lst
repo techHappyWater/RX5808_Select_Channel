@@ -1,0 +1,60 @@
+C51 COMPILER V9.54   MAIN                                                                  06/02/2020 14:40:33 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_MDK\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\mai
+                    -n.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "all.h"
+   2          /*
+   3          Project:RX5808图传自动对频
+   4          Made By:秃秃的科技宅
+   5          首发于 ：bilibili
+   6          
+   7          我们的口号是：开源万岁！！！
+   8          
+   9          Note：此代码完全开源，如有大佬拿去完善，请一定把完善过的代码开源！！！
+  10          
+  11          2020.05.16
+  12          */
+  13          
+  14          void main()
+  15          {
+  16   1        UartInit();   //115200bps@12.000MHz
+  17   1        P3M0&=0x7c;   //P3.0、P3.1、P3.7设为准双向口
+  18   1        P3M1&=0x7c;
+  19   1        P3M0|=0x40;   //P3.6设为推挽输出
+  20   1        P3M1&=~0x40;
+  21   1        P1M0&=0x1f;   //P1.7、P1.6、P1.5设为准双向口
+  22   1        P1M1&=0x1f;
+  23   1        
+  24   1        LED_A=1;
+  25   1        delay_ms(100);
+  26   1        //Channel_Scan();
+  27   1        
+  28   1        channel=EEPROM_Read(0);
+  29   1        RX5808_Set_Freq(Freq_Buff[channel]);
+  30   1        
+  31   1        while(1)
+  32   1        {
+  33   2          delay_ms(10);
+  34   2          KEY_Scan();        //扫描按键
+  35   2        }
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     72    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

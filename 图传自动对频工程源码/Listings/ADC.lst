@@ -1,0 +1,45 @@
+C51 COMPILER V9.54   ADC                                                                   06/02/2020 14:38:58 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE ADC
+OBJECT MODULE PLACED IN .\Objects\ADC.obj
+COMPILER INVOKED BY: D:\Keil_MDK\C51\BIN\C51.EXE ADC.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ADC.
+                    -lst) TABS(2) OBJECT(.\Objects\ADC.obj)
+
+line level    source
+
+   1          #include "all.h"
+   2          /*
+   3          Project:RX5808图传自动对频
+   4          Made By:秃秃的科技宅
+   5          首发于 ：bilibili
+   6          
+   7          我们的口号是：开源万岁
+   8          
+   9          Note：此代码完全开源，如有大佬拿去完善，请一定把完善过的代码开源！！！
+  10          
+  11          2020.05.16
+  12          */
+  13          
+  14          u8 ADC_Translate()
+  15          {
+  16   1        P1ASF=0x10;
+  17   1        ADC_CONTR=0xec;
+  18   1        while(!(ADC_CONTR&0x10));    //等待转换完成
+  19   1        
+  20   1        return ADC_RES;
+  21   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     14    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

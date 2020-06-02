@@ -1,0 +1,37 @@
+C51 COMPILER V9.54   SPI                                                                   05/16/2020 12:01:02 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE SPI
+OBJECT MODULE PLACED IN .\Objects\spi.obj
+COMPILER INVOKED BY: D:\Keil_MDK\C51\BIN\C51.EXE spi.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\spi.
+                    -lst) TABS(2) OBJECT(.\Objects\spi.obj)
+
+line level    source
+
+   1          #include "all.h"
+   2          
+   3          void SPI_Write_a_Byte(u8 Dat)
+   4          {
+   5   1        u8 i;
+   6   1        for (i=0;i<8;i++)
+   7   1          {
+   8   2            MOSI=(bit)(Dat&0x80);
+   9   2            Dat<<=1;
+  10   2            SCK=1;
+  11   2            SCK=0;
+  12   2          }
+  13   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     19    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

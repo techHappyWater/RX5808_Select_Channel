@@ -1,0 +1,52 @@
+C51 COMPILER V9.54   DELAY                                                                 06/02/2020 14:38:57 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE DELAY
+OBJECT MODULE PLACED IN .\Objects\delay.obj
+COMPILER INVOKED BY: D:\Keil_MDK\C51\BIN\C51.EXE delay.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\de
+                    -lay.lst) TABS(2) OBJECT(.\Objects\delay.obj)
+
+line level    source
+
+   1          #include "all.h"
+   2          /*
+   3          Project:RX5808图传自动对频
+   4          Made By:秃秃的科技宅
+   5          首发于 ：bilibili
+   6          
+   7          我们的口号是：开源万岁！！！
+   8          
+   9          Note：此代码完全开源，如有大佬拿去完善，请一定把完善过的代码开源！！！
+  10          
+  11          2020.05.16
+  12          */
+  13          void Delay1ms()   //@12.000MHz
+  14          {
+  15   1        unsigned char i, j;
+  16   1      
+  17   1        i = 12;
+  18   1        j = 169;
+  19   1        do
+  20   1        {
+  21   2          while (--j);
+  22   2        } while (--i);
+  23   1      }
+  24          
+  25          void delay_ms(u16 time)
+  26          {
+  27   1        while(time--)Delay1ms();
+  28   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     29    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

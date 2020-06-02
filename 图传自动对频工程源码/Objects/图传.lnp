@@ -1,0 +1,9 @@
+".\Objects\main.obj",
+".\Objects\delay.obj",
+".\Objects\rx5808.obj",
+".\Objects\ADC.obj",
+".\Objects\uart.obj",
+".\Objects\eeprom.obj",
+".\Objects\key.obj" 
+TO ".\Objects\Í¼´«" 
+PRINT(".\Listings\Í¼´«.m51") RAMSIZE(256) 
